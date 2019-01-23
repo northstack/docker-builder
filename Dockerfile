@@ -6,3 +6,18 @@ RUN php -r "if (hash_file('sha384', 'composer-setup.php') === '93b54496392c06277
 RUN php composer-setup.php
 RUN php -r "unlink('composer-setup.php');"
 
+# install bash
+RUN apk update && apk add --no-cache bash
+
+# install nvm for node builds
+RUN wget https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh
+RUN chmod +x ./install.sh
+RUN touch ~/.bashrc
+RUN ./install.sh
+RUN rm install.sh
+
+# install rvm for ruby
+RUN curl -sSL https://get.rvm.io | bash -s stable
+
+# install python
+RUN apk add --no-cache py-pip
