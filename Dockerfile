@@ -21,3 +21,6 @@ RUN curl -sSL https://get.rvm.io | bash -s stable
 
 # install python
 RUN apk add --no-cache py-pip
+
+# install git
+RUN apk add --no-cache git
