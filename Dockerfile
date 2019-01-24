@@ -1,4 +1,9 @@
-FROM php:7.2-alpine
+FROM php:7-alpine
+
+RUN docker-php-ext-install bcmath
+RUN docker-php-ext-install mbstring
+
+WORKDIR /app
 
 # Composer install
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
