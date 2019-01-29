@@ -29,3 +29,5 @@ RUN apk add --no-cache py-pip
 
 # install git
 RUN apk add --no-cache git
+
+ENTRYPOINT /bin/bash
