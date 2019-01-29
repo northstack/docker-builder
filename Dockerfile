@@ -31,3 +31,6 @@ RUN apk add --no-cache py-pip
 RUN apk add --no-cache git
 
 ENTRYPOINT /bin/bash
+
+# fixes nvm node installation
+RUN apk add --no-cache coreutils
