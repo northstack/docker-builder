@@ -19,15 +19,16 @@ RUN touch ~/.bashrc
 RUN ./install.sh
 RUN rm install.sh
 
-# install rvm for ruby
-RUN curl -sSL https://get.rvm.io | bash -s stable
-
 # install python
 RUN apt-get install -y python-pip git
 RUN apt-get install -y procps
 
-RUN usermod -aG rvm root
-RUN /etc/profile.d/rvm.sh
-RUN /usr/local/rvm/bin/rvm install 2.6
+RUN apt-get install -y ruby-full
+
+# install rvm for ruby
+#RUN curl -sSL https://get.rvm.io | bash -s stable
+#RUN usermod -aG rvm root
+#RUN /etc/profile.d/rvm.sh
+#RUN /usr/local/rvm/bin/rvm install 2.6
 
 ENTRYPOINT /bin/bash
