@@ -24,5 +24,10 @@ RUN curl -sSL https://get.rvm.io | bash -s stable
 
 # install python
 RUN apt-get install -y python-pip git
+RUN apt-get install -y procps
+
+RUN usermod -aG rvm root
+RUN /etc/profile.d/rvm.sh
+RUN /usr/local/rvm/bin/rvm install 2.6
 
 ENTRYPOINT /bin/bash
