@@ -1,4 +1,4 @@
-FROM php:7-alpine
+FROM php:7
 
 RUN docker-php-ext-install bcmath
 RUN docker-php-ext-install mbstring
@@ -7,12 +7,10 @@ WORKDIR /app
 
 # Composer install
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-RUN php -r "if (hash_file('sha384', 'composer-setup.php') === '93b54496392c062774670ac18b134c3b3a95e5a5e5c8f1a9f115f203b75bf9a129d5daa8ba6a13e2cc8a1da0806388a8') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
 RUN php composer-setup.php
 RUN php -r "unlink('composer-setup.php');"
 
-# install bash
-RUN apk update && apk add --no-cache bash
+RUN apt-get update && apt-get install -y wget
 
 # install nvm for node builds
 RUN wget https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh
@@ -25,12 +23,6 @@ RUN rm install.sh
 RUN curl -sSL https://get.rvm.io | bash -s stable
 
 # install python
-RUN apk add --no-cache py-pip
-
-# install git
-RUN apk add --no-cache git
+RUN apt-get install -y python-pip git
 
 ENTRYPOINT /bin/bash
-
-# fixes nvm node installation
-RUN apk add --no-cache coreutils
