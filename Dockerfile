@@ -32,5 +32,6 @@ RUN apt-get install -y ruby-full
 #RUN /usr/local/rvm/bin/rvm install 2.6
 
 COPY assets/filewaiter.php /usr/local/bin/filewaiter.php
+COPY assets/gatsby.sh /usr/local/bin/gatsby.sh
 
 ENTRYPOINT /bin/bash
